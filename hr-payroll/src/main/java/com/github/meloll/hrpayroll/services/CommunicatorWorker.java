@@ -1,5 +1,6 @@
 package com.github.meloll.hrpayroll.services;
 
+import com.github.meloll.hrpayroll.feignclients.WorkerFeignClient;
 import com.github.meloll.hrpayroll.vo.Worker;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,11 @@ public class CommunicatorWorker {
 
     private RestTemplate restTemplate;
 
-    public CommunicatorWorker(RestTemplate restTemplate) {
+    private WorkerFeignClient workerFeignClient;
+
+    public CommunicatorWorker(RestTemplate restTemplate,WorkerFeignClient workerFeignClient ) {
         this.restTemplate = restTemplate;
+        this.workerFeignClient = workerFeignClient;
     }
 
     private String getPathWorkerForId(Long id){
@@ -27,6 +31,11 @@ public class CommunicatorWorker {
     public Worker getWorkerForId(Long id){
         return restTemplate.getForObject(getPathWorkerForId(id),Worker.class, Map.of("id",id));
     }
+
+    public Worker getWorkerForIdFeignClient(Long id){
+        return  workerFeignClient.findId(id).getBody();
+    }
+
 
 
 

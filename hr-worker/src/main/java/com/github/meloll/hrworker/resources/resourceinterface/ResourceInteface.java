@@ -10,11 +10,9 @@ import java.util.List;
 public interface ResourceInteface<T> {
 
     @GetMapping(value = "/{id}")
-    @ResponseBody
     ResponseEntity<T> findId(@PathVariable Long id);
 
     @GetMapping
-    @ResponseBody
     ResponseEntity<List<T>> findAll();
 
 
