@@ -34,8 +34,9 @@ public class WorkerResource implements ResourceInteface<Worker> {
 
     }
 
-    public ResponseEntity<Worker> findId(Long id){
+    public ResponseEntity<Worker> findId(Long id) throws InterruptedException {
 
+        //Thread.sleep(5000); test timeout resilience4j
         logger.info("PORT: "+ env.getProperty("local.server.port"));
         logger.info("Call Number: " + callNumber);
         Optional<Worker> worker = repository.findById(id);

@@ -1,0 +1,15 @@
+server:
+  port: 8101
+
+resilience4j.circuitbreaker:
+  instances:
+    fallBackMethodPayment:
+      minimumNumberOfCalls: 2
+      slidingWindowSize: 4
+
+
+resilience4j:
+  timelimiter:
+    configs:
+      default:
+        timeout-duration: 1s

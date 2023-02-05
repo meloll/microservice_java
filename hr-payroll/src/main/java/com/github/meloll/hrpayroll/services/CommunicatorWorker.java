@@ -2,6 +2,7 @@ package com.github.meloll.hrpayroll.services;
 
 import com.github.meloll.hrpayroll.feignclients.WorkerFeignClient;
 import com.github.meloll.hrpayroll.vo.Worker;
+import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

@@ -10,7 +10,7 @@ import java.util.List;
 public interface ResourceInteface<T> {
 
     @GetMapping(value = "/{id}")
-    ResponseEntity<T> findId(@PathVariable Long id);
+    ResponseEntity<T> findId(@PathVariable Long id) throws InterruptedException;
 
     @GetMapping
     ResponseEntity<List<T>> findAll();
