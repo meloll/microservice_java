@@ -1,3 +1,4 @@
+
 spring:
   cloud:
     gateway:
@@ -14,3 +15,7 @@ spring:
           uri: lb://hr-payroll
           predicates:
             - Path=/hr-payroll/**
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 5s
+
