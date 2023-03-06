@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
-
+@RefreshScope
 @RequestMapping(value = "/worker")
 @RestController
 @AllArgsConstructor
@@ -30,9 +31,8 @@ public class WorkerResource implements ResourceInteface<Worker> {
 
     private static Integer callNumber = 0;
 
-    @Qualifier("getConfig")
+    @Value("${test.config}")
     private String config;
-
     public ResponseEntity<List<Worker>> findAll(){
 
         List<Worker> list = repository.findAll();
