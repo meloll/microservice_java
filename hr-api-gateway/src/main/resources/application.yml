@@ -19,6 +19,10 @@ spring:
           uri: lb://hr-user
           predicates:
               - Path=/hr-user/**
+        - id: hr-oauth
+          uri: lb://hr-oauth
+          predicates:
+              - Path=/hr-oauth/**
       httpclient:
         connect-timeout: 1000
         response-timeout: 5s
