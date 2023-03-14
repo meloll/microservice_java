@@ -17,7 +17,7 @@ find $HOME/IdeaProjects/ms-course -name pom.xml -execdir mvn clean install -Dski
 truncate -s 0 pid.txt
 
 # Finding all .jar files
-find $HOME/IdeaProjects/ms-course -name "hr-*.jar" -exec mv -t $HOME/micro-service-run/ms-course {} \;
+find $HOME/IdeaProjects/ms-course -name "hr-*.jar" -exec mv -t /home/guilherme/micro-service-run/ms-course {} \;
 
 echo "Executing MS-HR-CONFIG-SERVER!"
 java -Djvm.process.name=ms-hr-config-server -jar hr-config-server-0.0.1-SNAPSHOT.jar > log_hr_config_server.log &
