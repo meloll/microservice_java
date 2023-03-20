@@ -23,6 +23,8 @@ spring:
           uri: lb://hr-oauth
           predicates:
               - Path=/hr-oauth/**
+          filters:
+              - AddRequestHeader=Cookie, Set-Cookie
       httpclient:
         connect-timeout: 1000
         response-timeout: 5s
