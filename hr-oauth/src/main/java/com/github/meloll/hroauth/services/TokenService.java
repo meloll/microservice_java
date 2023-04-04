@@ -1,5 +1,6 @@
 package com.github.meloll.hroauth.services;
 
+import com.github.meloll.hroauth.dtos.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,16 +21,16 @@ public class TokenService {
 
 
 
-    public String generateToken(Authentication authentication) {
+    public String generateToken(UserDto userDto) {
         Instant now = Instant.now();
-        String scope = authentication.getAuthorities().stream()
+        String scope = userDto.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(" "));
         JwtClaimsSet claims = JwtClaimsSet.builder()
                 .issuer("self")
                 .issuedAt(now)
                 .expiresAt(now.plus(1, ChronoUnit.HOURS))
-                .subject(authentication.getName())
+                .subject(userDto.getEmail())
                 .claim("scope", scope)
                 .build();
         return this.jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
